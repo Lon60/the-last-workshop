@@ -1,9 +1,7 @@
-# Player.gd (Godot 4.x, GDScript)
 extends CharacterBody3D
 
 @onready var cam: Camera3D = $Camera3D
 
-# --- Tunables ---
 const WALK_SPEED := 4.5
 const SPRINT_SPEED := 7.5
 const JUMP_VELOCITY := 4.0
@@ -27,7 +25,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		cam.rotation_degrees.x = pitch_deg
 
 	if event.is_action_pressed("ui_cancel"):
-		# FIXED: Python-style ternary
 		var mode := Input.get_mouse_mode()
 		Input.set_mouse_mode(
 			Input.MOUSE_MODE_VISIBLE if mode == Input.MOUSE_MODE_CAPTURED else Input.MOUSE_MODE_CAPTURED
@@ -41,7 +38,6 @@ func _physics_process(delta: float) -> void:
 	var input_vec := Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 	var move_speed := SPRINT_SPEED if Input.is_action_pressed("sprint") else WALK_SPEED
 
-	# Direction relative to where you're looking (yaw only)
 	var forward := -transform.basis.z
 	var right := transform.basis.x
 	forward.y = 0
@@ -51,7 +47,6 @@ func _physics_process(delta: float) -> void:
 
 	var direction := (right * input_vec.x + forward * input_vec.y).normalized()
 
-	# Horizontal velocity (x,z)
 	if direction != Vector3.ZERO:
 		velocity.x = direction.x * move_speed
 		velocity.z = direction.z * move_speed
@@ -59,7 +54,6 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, move_speed)
 		velocity.z = move_toward(velocity.z, 0, move_speed)
 
-	# Gravity + jump
 	if not is_on_floor():
 		velocity.y -= GRAVITY * delta
 	elif Input.is_action_just_pressed("jump"):
