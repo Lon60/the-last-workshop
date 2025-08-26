@@ -1,0 +1,59 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2jroehlj1rug"]
+
+[ext_resource type="Script" uid="uid://dnksp47bqidp4" path="res://scenes/menu/menu.gd" id="1_klgdb"]
+
+[node name="menu" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_klgdb")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "The last Workshop"
+
+[node name="Label2" type="Label" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Pre Alpha Demo Snapshot"
+horizontal_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="playBtn" type="Button" parent="VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 4
+text = "Play Demo"
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="exitBtn" type="Button" parent="VBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Exit"
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[connection signal="pressed" from="VBoxContainer/VBoxContainer2/playBtn" to="." method="_on_play_btn_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer2/exitBtn" to="." method="_on_exit_btn_pressed"]

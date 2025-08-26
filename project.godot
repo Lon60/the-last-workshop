@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="The Final Workshop"
-run/main_scene="uid://dp2b85cah5ut0"
+run/main_scene="uid://b2jroehlj1rug"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
